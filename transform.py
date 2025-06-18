@@ -1,8 +1,5 @@
 import nibabel as nb
-import numpy as np
 import torchio as tio
-#import scitool.dataview_devel.pyqtgraph_gui as plt2D
-#import pylab as plt
 import os
 import shutil
 
