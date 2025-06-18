@@ -27,7 +27,7 @@ for dir_entry in os.scandir(input_mask_path):
     codenr=filename.split('.')[0]
     if codenr=='':
         continue
-    if os.path.exists(os.path.join(output_path,'{:04d}_0001.nii.gz'.format(int(codenr))))
+    if os.path.exists(os.path.join(output_path,'{:04d}_0001.nii.gz'.format(int(codenr)))):
         print("Already registered... skipping...")
         continue
 
