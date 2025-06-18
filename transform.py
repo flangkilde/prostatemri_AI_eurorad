@@ -11,7 +11,7 @@ import shutil
 # for DWI 0002 and for ADC 0003. Example: '0001_0001.nii.gz' for code number 0001 and modality T2 (0001).
 # Output will be in the same format.
 
-os.makedirs("./output/", exist_ok=True)
+os.makedirs("./data_transformed/", exist_ok=True)
 
 datadir = './data/'
 for dir_entry in os.scandir(datadir):
@@ -33,10 +33,10 @@ for dir_entry in os.scandir(datadir):
     resampledDWI = transform(imagediff)
     resampledADC = transform(imageADC)
     
-    resampledDWI.save('./output/{}_0002.nii.gz'.format(code_nr))
-    resampledADC.save('./output/{}_0003.nii.gz'.format(code_nr))
+    resampledDWI.save('./data_transformed/{}_0002.nii.gz'.format(code_nr))
+    resampledADC.save('./data_transformed/{}_0003.nii.gz'.format(code_nr))
 
     #Copy the T2-weighted file to the output folder
-    shutil.copyfile(datadir+"/{}_0001.nii.gz".format(code_nr), './output/{}_0001.nii.gz'.format(code_nr))
+    shutil.copyfile(datadir+"/{}_0001.nii.gz".format(code_nr), './data_transformed/{}_0001.nii.gz'.format(code_nr))
 
 
