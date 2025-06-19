@@ -26,39 +26,13 @@ The reference masks to be used for training were created manually using ITK-snap
 
 
 Step 5 - Training of nnU-Net:
-For complete documentation of the usage of nnU-Net please see their (nnUNetv2_plan_and_preprocess -d 113 -c 2d 3d_fullres -pl --verify_dataset_integrity).
+For complete documentation of the usage of nnU-Net please see their Github (https://github.com/MIC-DKFZ/nnUNet).
 
-We used the following commands: 
+The commands that we used are listed in "nnUNet_execution.txt".
 
-For plan and preprocessing (Dataset113_prostate is the dataset name):
-nnUNetv2_plan_and_preprocess -d 113 -c 2d 3d_fullres -pl --verify_dataset_integrity
-
-For training (simultaneously on 5 GPUs, one fold per GPU):
-CUDA_VISIBLE_DEVICES=0 nnUNetv2_train -tr nnUNetTrainer 113 2d 0 --npz & # train on GPU 0
-sleep 200
-CUDA_VISIBLE_DEVICES=1 nnUNetv2_train -tr nnUNetTrainer 113 2d 1 --npz & # train on GPU 1
-CUDA_VISIBLE_DEVICES=2 nnUNetv2_train -tr nnUNetTrainer 113 2d 2 --npz & # train on GPU 2
-CUDA_VISIBLE_DEVICES=3 nnUNetv2_train -tr nnUNetTrainer 113 2d 3 --npz # train on GPU 3
-CUDA_VISIBLE_DEVICES=4 nnUNetv2_train -tr nnUNetTrainer 113 2d 4 --npz # train on GPU 4
-wait
-CUDA_VISIBLE_DEVICES=0 nnUNetv2_train -tr nnUNetTrainer 113 3d_fullres 0 --npz & # train on GPU 0
-sleep 200
-CUDA_VISIBLE_DEVICES=1 nnUNetv2_train -tr nnUNetTrainer 113 3d_fullres 1 --npz & # train on GPU 1
-CUDA_VISIBLE_DEVICES=2 nnUNetv2_train -tr nnUNetTrainer 113 3d_fullres 2 --npz & # train on GPU 2
-CUDA_VISIBLE_DEVICES=3 nnUNetv2_train -tr nnUNetTrainer 113 3d_fullres 3 --npz & # train on GPU 3
-CUDA_VISIBLE_DEVICES=4 nnUNetv2_train -tr nnUNetTrainer 113 3d_fullres 4 --npz & # train on GPU 4
-
-For finding best configuration:
-nnUNetv2_find_best_configuration 113 -tr nnUNetTrainer
-
-For inference (prediction) on test set:
-nnUNetv2_predict -d Dataset113_prostate -i ./Dataset113_prostate/imagesTs -o ./inference_testset_dataset113_3d_fullres -f  0 1 2 3 4 -tr nnUNetTrainer -c 3d_fullres -p nnUNetPlans --save_probabilities
-
-For postprocessing:
-nnUNetv2_apply_postprocessing -i ./inference_testset_dataset113_3d_fullres -o ./inference_testset_dataset113_3d_fullres_PP -pp_pkl_file ./nnUNet_results/Dataset113_prostate/nnUNetTrainer__nnUNetPlans__3d_fullres/crossval_results_folds_0_1_2_3_4/postprocessing.pkl -np 8 -plans_json ./nnUNet_results/Dataset113_prostate/nnUNetTrainer__nnUNetPlans__3d_fullres/crossval_results_folds_0_1_2_3_4/plans.json
 
 Step 6 - Statistical analysis:
-Softmax values were used to create ROC-curves. The statistical program R were used for calculation of AUC and confidence intervals. The code for R i 
+For statistical analysis the reference (0 or 1), the maximum softmax value for that case and the PI-RADS from the primary evaluation was saved in an Excel file. The data were then analyzed with R to draw an ROC and calculate AUROC and CIs. 
 
 
 
