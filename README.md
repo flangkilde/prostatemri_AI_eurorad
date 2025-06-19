@@ -18,7 +18,7 @@ With the input data in nifti format we then performed a transformation of the DW
 
 Step 3 - Registration:
 
-With the transformed data we then performed a rigid registration of the DWI b=0 image and the T2-weighted image with the b0 image as moving using Elastix (https://elastix.dev). The registration was then applied to the other b-values and the ADC map using Transformix (which is a part of Elastix). Please see the script "Registration.py".
+With the transformed data we then performed a rigid registration of the DWI b=0 image and the T2-weighted image with the b0 image as moving using Elastix (https://elastix.dev). The registration was then applied to the other b-values and the ADC map using Transformix (which is a part of Elastix). Please see the script "Registration.py". The parameter file use by the script is also available and should be located in the same folder. 
 
 Step 4 - Annotation:
 
