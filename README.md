@@ -5,7 +5,7 @@ Welcome!
 Here we provide the scripts that were used for the article "Evaluation of AI for Prostate Cancer Detection in Biparametric-MRI Screening Population Data" in European Radiology. In the publication a nnU-Net were trained to detect clinically significant prostate cancer in biparametric MRI data from a screening population. All steps are explained below. Most of the scripts are python except the statistical analysis, which were done in R. 
 
 
-Step 1 - Conversion to nifti and naming):
+Step 1 - Conversion to nifti and naming:
 
 Before using the script, data has to be converted to the nifti format. The authors used DicomSort (https://github.com/dicomsort/dicomsort) and dcm2niix (https://github.com/rordenlab/dcm2niix) to perform this. Since the converstion to nifti has to adapted to the format of the original data, our script is not provided. We recommend reading the documentation for the applications instead. 
 We used the naming convention listed in nnU-Net (https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/dataset_format.md). Our files are named as {codenr}_{modalitynumber}.nii.gz. Modality number for T2 is 0001, for DWI 0002 and for ADC 0003. Example: '0001_0001.nii.gz' for code number 0001 and modality T2 (0001).
