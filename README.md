@@ -2,7 +2,7 @@
 
 Welcome! 
 
-Here we provide the scripts that were used for a publication in European Radiology. In the publication a nnU-Net were trained to detect clinically significant prostate cancer in biparametric MRI data from a screening population. All steps are explained below. Most of the scripts are python except the statistical analysis, which were done in R. 
+Here we provide the scripts that were used for the article "Evaluation of AI for Prostate Cancer Detection in Biparametric-MRI Screening Population Data" in European Radiology. In the publication a nnU-Net were trained to detect clinically significant prostate cancer in biparametric MRI data from a screening population. All steps are explained below. Most of the scripts are python except the statistical analysis, which were done in R. 
 
 
 Step 1 - Conversion to nifti and naming):
